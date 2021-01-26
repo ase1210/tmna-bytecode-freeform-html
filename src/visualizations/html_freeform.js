@@ -56,7 +56,6 @@ looker.plugins.visualizations.add({
           ,data[0][field]["value"])
         })
 
-        // element.innerHTML = html_with_data
        element.innerHTML = html_with_data
 		doneRendering()
 	}
