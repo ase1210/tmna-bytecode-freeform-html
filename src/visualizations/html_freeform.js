@@ -20,6 +20,11 @@ looker.plugins.visualizations.add({
           text-align: center;
         }`
       },
+        use_html_from_fields: {
+          type: "boolean",
+          label: "Use html from fields",
+          default: false
+      },
   },
 
 	create: function(element, config){
@@ -50,10 +55,12 @@ looker.plugins.visualizations.add({
 
         document.head.appendChild(styleEl);
 
+        const html_or_value = config.use_html_from_fields ? 'html' : 'value'
+
         let html_with_data = config.html_freeform || ' '
         fields.forEach((field,i) => {
           html_with_data = html_with_data.replace(`~${i+1}`
-          ,data[0][field]["value"])
+          ,data[0][field][html_or_value])
         })
 
        element.innerHTML = html_with_data
