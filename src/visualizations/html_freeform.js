@@ -55,12 +55,14 @@ looker.plugins.visualizations.add({
 
         document.head.appendChild(styleEl);
 
-        const html_or_value = config.use_html_from_fields ? 'html' : 'value'
-
         let html_with_data = config.html_freeform || ' '
         fields.forEach((field,i) => {
+        const html_or_text = config.use_html_from_fields 
+            ? LookerCharts.Utils.htmlForCell(data[0][field])
+            : LookerCharts.Utils.textForCell(data[0][field])
+          const htmlValue = 
           html_with_data = html_with_data.replace(`~${i+1}`
-          ,data[0][field][html_or_value])
+          ,html_or_text)
         })
 
        element.innerHTML = html_with_data
