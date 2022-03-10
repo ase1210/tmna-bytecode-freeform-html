@@ -55,17 +55,19 @@ looker.plugins.visualizations.add({
 
         document.head.appendChild(styleEl);
 
-        let html_with_data = config.html_freeform || ' '
-        fields.forEach((field,i) => {
-        const html_or_text = config.use_html_from_fields 
-            ? LookerCharts.Utils.htmlForCell(data[0][field])
-            : LookerCharts.Utils.textForCell(data[0][field])
-          const htmlValue = 
-          html_with_data = html_with_data.replace(`~${i+1}`
-          ,html_or_text)
-        })
-
-       element.innerHTML = html_with_data
+        let html = ''
+        for(var row of data) {
+          let rowHtml = config.html_freeform || ' ';
+          fields.map((field, i) => {
+            let cellHtml = ' '
+            var cell = row[field];
+            cellHtml = LookerCharts.Utils.textForCell(cell);
+            rowHtml = rowHtml.replace(`~${i+1}`
+            , cellHtml)
+          })
+          html = html + rowHtml;
+        }
+       element.innerHTML = html
 		doneRendering()
 	}
 });
