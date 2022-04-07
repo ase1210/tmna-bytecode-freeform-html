@@ -41,6 +41,11 @@ let vis = looker.plugins.visualizations.add({
           type:"boolean",
           label:"Pagination?",
           default:true
+        },
+        pagination_toggle: {
+          type:"boolean",
+          label:"Pagination?",
+          default:true
         }
   },
 
