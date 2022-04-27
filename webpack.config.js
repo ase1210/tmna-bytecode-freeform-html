@@ -9,9 +9,9 @@ let webpackConfig = {
     },
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, 'dist'),
-        library: '[name]',
-        libraryTarget: 'umd'
+        path: path.resolve(__dirname, './dist'),
+        // library: '[name]',
+        // libraryTarget: 'umd'
     },
     resolve: {
         extensions: ['.ts', '.js', '.scss', '.css']
@@ -47,3 +47,31 @@ let webpackConfig = {
 };
 
 module.exports = webpackConfig;
+
+// const path = require('path')
+
+// module.exports = {
+//     mode: 'production',
+//     entry: {
+//         'html_freeform': path.resolve(
+//             __dirname,
+//             './src/visualizations/html_freeform.js'
+//         ),
+//     },
+//     output: {
+//         filename: '[name].js',
+//         path: path.resolve(__dirname, './dist'),
+//     },
+//     module: {
+//         rules: [
+//             { test: /\.ts|.tsx$/, loader: 'ts-loader' },
+//             {
+//                 test: /\.css$/,
+//                 use: ['style-loader', 'css-loader'],
+//             },
+//         ],
+//     },
+//     resolve: {
+//         extensions: ['.ts', '.tsx', '.js'],
+//     },
+// }

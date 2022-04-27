@@ -1,9 +1,13 @@
 {
 	"scripts": {
-		"start:dev": "webpack-dev-server",
-		"build": "webpack"
+		"start:dev": "webpack-dev-server --watch",
+		"build": "webpack",
+		"watch": "webpack --config webpack.config.js --watch --progress",
+		"gen-cert": "cd server && openssl genrsa -out key.pem && openssl req -new -key key.pem -out csr.pem && openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem && rm csr.pem",
+		"serve": "concurrently \"webpack --config webpack.config.js --watch --progress\" \"cd server && node index.js\""
 	},
 	"devDependencies": {
+		"concurrently": "^7.0.0",
 		"copy-webpack-plugin": "^5.0.3",
 		"css-loader": "^4.2.0",
 		"file-loader": "^6.0.0",
@@ -18,5 +22,8 @@
 		"webpack-cli": "^3.3.1",
 		"webpack-dev-server": "^3.3.1"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"express": "^4.17.2",
+		"node": "^17.4.0"
+	}
 }
