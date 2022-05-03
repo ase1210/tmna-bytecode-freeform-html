@@ -92,7 +92,6 @@ looker.plugins.visualizations.add({
     
     let totalpages = Math.ceil(data.length / config.rows_per_page);
     console.log("Totalpages: ", totalpages);
-    console.log('ppoo')
     this.trigger("updateConfig", [{ totalPages: totalpages }]);
     // let pagination = `
     //   <div class="center" style="position: absolute; bottom: 0;">
